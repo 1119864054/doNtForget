@@ -1,0 +1,47 @@
+<scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}">
+    <block wx:if="{{tag==0}}">
+        <cu-custom bgColor="gray" isBack="{{true}}">
+            <view slot="backText">返回</view>
+            <view slot="content">待办</view>
+        </cu-custom>
+        <view class="cu-list menu card-menu margin-top">
+            <block wx:for="{{processing}}" wx:key="_id">
+                <view class="cu-item" bind:tap="openFinDialog" bind:longpress="openDelDialog" data-item-id="{{item._id}}">
+                    <view class="content">
+                        <!-- <text class="cuIcon-warn text-green"></text> -->
+                        <text class="text-grey">{{item.content}}</text>
+                    </view>
+                    <view class="action">
+                        <text class="text-grey text-sm">{{item.date}}</text>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+            <view class="action">
+                <text class="cuIcon-emojifill text-grey"></text>
+            </view>
+            <input class="solid-bottom" placeholder="添加一个待办吧..." value="{{value}}" bindinput="getContent" bindblur="getContent" maxlength="300" cursor-spacing="10" bindfocus="InputFocus" bindblur="InputBlur"></input>
+            <button class="cu-btn bg-green shadow" bind:tap="submit">发送</button>
+        </view>
+    </block>
+    <block wx:else>
+        <cu-custom bgColor="gray" isBack="{{true}}">
+            <view slot="backText">返回</view>
+            <view slot="content">已完成</view>
+        </cu-custom>
+        <view class="cu-list menu card-menu margin-top">
+            <block wx:for="{{completed}}" wx:key="_id">
+                <view class="cu-item" bind:tap="openCancelDialog" bind:longpress="openDelDialog" data-item-id="{{item._id}}">
+                    <view class="content">
+                        <!-- <text class="cuIcon-warn text-green"></text> -->
+                        <text class="text-grey">{{item.content}}</text>
+                    </view>
+                    <view class="action">
+                        <text class="text-grey text-sm">{{item.date}}</text>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </block>
+</scroll-view>

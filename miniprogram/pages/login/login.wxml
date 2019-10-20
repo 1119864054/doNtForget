@@ -1,0 +1,27 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <button wx:if="{{!hasUserInfo && canIUse}}" loading="{{loading}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'>
+      获取头像昵称
+    </button>
+    <block wx:else>
+      <open-data class="avatar" type="userAvatarUrl" lang="zh_CN"></open-data>
+      <view class="text-xl padding">
+        <open-data type="userNickName" lang="zh_CN"></open-data>
+      </view>
+    </block>
+  </view>
+  <view class="cu-list menu card-menu margin-top">
+    <navigator class="cu-item arrow" url="/pages/items/items?tag=0">
+      <view class="content">
+        <text class="cuIcon-writefill text-blue"></text>
+        <text class="text-grey">待办</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="/pages/items/items?tag=1">
+      <view class="content">
+        <text class="cuIcon-messagefill text-orange"></text>
+        <text class="text-grey">已完成</text>
+      </view> 
+    </navigator>
+  </view>
+</scroll-view>
